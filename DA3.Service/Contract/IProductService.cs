@@ -7,7 +7,7 @@ namespace DA3.Service.Contract
     {
         Task<List<ProductDto>> All();
 
-        Task<bool> Create(CreateProductRequest request);
+        Task<bool> Create(CreateProductRequest request, CancellationToken cancellationToken = default);
 
         Task<bool> Update(UpdateProductRequest request);
     }

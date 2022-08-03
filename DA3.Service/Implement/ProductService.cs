@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using DA3.DAL.Contract;
 using DA3.DAL.Domain;
 using DA3.DAL.Repository;
 using DA3.Service.Contract;
@@ -11,11 +12,13 @@ namespace DA3.Service.Implement
     {
         private readonly IProductRepository _productRepository;
         private readonly IMapper _mapper;
+        private readonly IApplicationDbContext _dbContext;
 
-        public ProductService(IProductRepository productRepository, IMapper mapper)
+        public ProductService(IProductRepository productRepository, IMapper mapper, IApplicationDbContext dbContext)
         {
             _productRepository = productRepository;
             _mapper = mapper;
+            _dbContext = dbContext;
         }
 
         public async Task<List<ProductDto>> All()
@@ -24,12 +27,14 @@ namespace DA3.Service.Implement
             return _mapper.Map<List<Product>, List<ProductDto>>(allProducts);
         }
 
-        public async Task<bool> Create(CreateProductRequest request)
+        public async Task<bool> Create(CreateProductRequest request, CancellationToken cancellationToken = default)
         {
             try
             {
                 var productEntity = _mapper.Map<CreateProductRequest, Product>(request);
-                await _productRepository.Add(productEntity);
+
+                await _dbContext.Products.AddAsync(productEntity, cancellationToken);
+                await _dbContext.SaveChangesAsync(cancellationToken);
                 return true;
             }
             catch (Exception)

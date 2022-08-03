@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DA3", "DA3\DA3.csproj", "{14320AF6-79F7-44B3-8AE9-17537D5AC6DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DA3", "DA3\DA3.csproj", "{14320AF6-79F7-44B3-8AE9-17537D5AC6DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DA3.Common", "DA3.Common\DA3.Common.csproj", "{102C095F-94AB-4D39-95CB-7501E1C1C716}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DA3.Common", "DA3.Common\DA3.Common.csproj", "{102C095F-94AB-4D39-95CB-7501E1C1C716}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DA3.Service", "DA3.Service\DA3.Service.csproj", "{08B48FDD-9FA2-4C02-9727-72D27B420480}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DA3.Service", "DA3.Service\DA3.Service.csproj", "{08B48FDD-9FA2-4C02-9727-72D27B420480}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DA3.DAL", "DA3.DAL\DA3.DAL.csproj", "{9ED2C563-416F-469F-AB11-809C59AE9741}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DA3.DAL", "DA3.DAL\DA3.DAL.csproj", "{9ED2C563-416F-469F-AB11-809C59AE9741}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DA3.Infrastructure", "DA3.Infrastructure\DA3.Infrastructure.csproj", "{345EF916-DB90-488A-8634-3A3013E18353}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{9ED2C563-416F-469F-AB11-809C59AE9741}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9ED2C563-416F-469F-AB11-809C59AE9741}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9ED2C563-416F-469F-AB11-809C59AE9741}.Release|Any CPU.Build.0 = Release|Any CPU
+		{345EF916-DB90-488A-8634-3A3013E18353}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{345EF916-DB90-488A-8634-3A3013E18353}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{345EF916-DB90-488A-8634-3A3013E18353}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{345EF916-DB90-488A-8634-3A3013E18353}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

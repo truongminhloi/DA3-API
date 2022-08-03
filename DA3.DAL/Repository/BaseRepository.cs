@@ -4,7 +4,7 @@ namespace DA3.DAL.Repository
 {
     public class BaseRepository<T> : IBaseRepository<T> where T : class
     {
-        internal DbSet<T> dbSet;
+        public DbSet<T> dbSet;
 
         public async Task<List<T>> All()
         {
