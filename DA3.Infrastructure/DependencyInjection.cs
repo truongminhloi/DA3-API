@@ -5,6 +5,7 @@ using DA3.Service.Implement;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
 namespace DA3.Infrastructure
 {
@@ -19,7 +20,7 @@ namespace DA3.Infrastructure
             services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
 
             services.AddTransient<IProductService, ProductService>();
-
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
             return services;
         }
     }

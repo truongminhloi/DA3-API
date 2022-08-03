@@ -10,21 +10,20 @@ namespace DA3.Service.Implement
 {
     public class ProductService : IProductService
     {
-        private readonly IProductRepository _productRepository;
         private readonly IMapper _mapper;
         private readonly IApplicationDbContext _dbContext;
 
-        public ProductService(IProductRepository productRepository, IMapper mapper, IApplicationDbContext dbContext)
+        public ProductService(IMapper mapper, IApplicationDbContext dbContext)
         {
-            _productRepository = productRepository;
             _mapper = mapper;
             _dbContext = dbContext;
         }
 
         public async Task<List<ProductDto>> All()
         {
-            var allProducts = await _productRepository.All();
-            return _mapper.Map<List<Product>, List<ProductDto>>(allProducts);
+            // var allProducts = await _productRepository.All();
+            //return _mapper.Map<List<Product>, List<ProductDto>>(allProducts);
+            return new List<ProductDto>();
         }
 
         public async Task<bool> Create(CreateProductRequest request, CancellationToken cancellationToken = default)
@@ -47,7 +46,7 @@ namespace DA3.Service.Implement
             try
             {
                 var productEntity = _mapper.Map<UpdateProductRequest, Product>(request);
-                await _productRepository.Update(productEntity);
+                //await _productRepository.Update(productEntity);
                 return true;
             }
             catch (Exception)
