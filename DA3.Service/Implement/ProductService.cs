@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using DA3.DAL.Contract;
 using DA3.DAL.Domain;
-using DA3.DAL.Repository;
 using DA3.Service.Contract;
 using DA3.Service.Dto;
 using DA3.Service.Request;
@@ -21,9 +21,9 @@ namespace DA3.Service.Implement
 
         public async Task<List<ProductDto>> All()
         {
-            // var allProducts = await _productRepository.All();
-            //return _mapper.Map<List<Product>, List<ProductDto>>(allProducts);
-            return new List<ProductDto>();
+            var productEntitys = _dbContext.Products.ToList();
+
+            return _mapper.Map<List<Product>, List<ProductDto>>(productEntitys);
         }
 
         public async Task<bool> Create(CreateProductRequest request, CancellationToken cancellationToken = default)
@@ -36,23 +36,49 @@ namespace DA3.Service.Implement
                 await _dbContext.SaveChangesAsync(cancellationToken);
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return false;
             }
         }
-        public async Task<bool> Update(UpdateProductRequest request)
+
+        public async Task<bool> Update(UpdateProductRequest request, CancellationToken cancellationToken = default)
         {
             try
             {
                 var productEntity = _mapper.Map<UpdateProductRequest, Product>(request);
-                //await _productRepository.Update(productEntity);
+
+                _dbContext.Products.Update(productEntity);
+                await _dbContext.SaveChangesAsync(cancellationToken);
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return false;
             }
+        }
+
+        public async Task<bool> Delete(int productId, CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                var productEntity = _dbContext.Products.ProjectTo<Product>(_mapper.ConfigurationProvider).FirstOrDefault(x=>x.Id == productId);
+                productEntity.Status = Common.Status.DELETE;
+
+                _dbContext.Products.Update(productEntity);
+                await _dbContext.SaveChangesAsync(cancellationToken);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public async Task<ProductDto> FindById(int productId)
+        {
+            var productEntity = _dbContext.Products.ProjectTo<Product>(_mapper.ConfigurationProvider).FirstOrDefault(x => x.Id == productId);
+            return _mapper.Map<Product, ProductDto>(productEntity);
         }
     }
 }

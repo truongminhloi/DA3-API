@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DA3.Controler
 {
-    [Route("api/prodcut")]
+    [Route("api/product")]
     public class ProductController
     {
         private readonly IProductService _productService;
@@ -24,16 +24,30 @@ namespace DA3.Controler
 
         [HttpPost]
         [Route("create")]
-        public async Task<bool> Create(CreateProductRequest request)
+        public async Task<bool> Create([FromBody] CreateProductRequest request)
         {
             return await _productService.Create(request);
         }
 
         [HttpPost]
         [Route("update")]
-        public async Task<bool> Update(UpdateProductRequest request)
+        public async Task<bool> Update([FromBody] UpdateProductRequest request)
         {
             return await _productService.Update(request);
+        }
+
+        [HttpDelete]
+        [Route("delete")]
+        public async Task<bool> Delete([FromQuery] int productId)
+        {
+            return await _productService.Delete(productId);
+        }
+
+        [HttpGet]
+        [Route("details")]
+        public async Task<ProductDto> FindById([FromQuery] int productId)
+        {
+            return await _productService.FindById(productId);
         }
     }
 }

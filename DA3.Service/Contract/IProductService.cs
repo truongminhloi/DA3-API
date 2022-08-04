@@ -9,6 +9,10 @@ namespace DA3.Service.Contract
 
         Task<bool> Create(CreateProductRequest request, CancellationToken cancellationToken = default);
 
-        Task<bool> Update(UpdateProductRequest request);
+        Task<bool> Update(UpdateProductRequest request, CancellationToken cancellationToken = default);
+
+        Task<bool> Delete(int productId, CancellationToken cancellationToken = default);
+
+        Task<ProductDto> FindById(int productId);
     }
 }

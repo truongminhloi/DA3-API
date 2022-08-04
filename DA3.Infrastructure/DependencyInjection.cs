@@ -17,10 +17,12 @@ namespace DA3.Infrastructure
                     options.UseSqlServer(
                         configuration.GetConnectionString("DefaultConnection"),
                         b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
+
             services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
 
             services.AddTransient<IProductService, ProductService>();
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
             return services;
         }
     }

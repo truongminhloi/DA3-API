@@ -29,6 +29,7 @@ namespace DA3
                     throw;
                 }
             }
+            app.Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -39,16 +40,6 @@ namespace DA3
                        });
     }
 }
-
-
-//// Configure the HTTP request pipeline.
-//if (!app.Environment.IsDevelopment())
-//{
-//    app.UseExceptionHandler("/Error");
-//    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-//    app.UseHsts();
-//}
-
 
 //app.UseHttpsRedirection();
 //app.UseStaticFiles();
