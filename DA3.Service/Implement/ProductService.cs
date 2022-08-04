@@ -5,6 +5,7 @@ using DA3.DAL.Domain;
 using DA3.Service.Contract;
 using DA3.Service.Dto;
 using DA3.Service.Request;
+using Microsoft.Extensions.Logging;
 
 namespace DA3.Service.Implement
 {
@@ -12,11 +13,13 @@ namespace DA3.Service.Implement
     {
         private readonly IMapper _mapper;
         private readonly IApplicationDbContext _dbContext;
+        private readonly ILogger _logger; 
 
-        public ProductService(IMapper mapper, IApplicationDbContext dbContext)
+        public ProductService(IMapper mapper, IApplicationDbContext dbContext, ILogger<ProductDto> logger)
         {
             _mapper = mapper;
             _dbContext = dbContext;
+            _logger = logger;
         }
 
         public async Task<List<ProductDto>> All()
@@ -38,6 +41,7 @@ namespace DA3.Service.Implement
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex.Message);
                 return false;
             }
         }
@@ -54,6 +58,7 @@ namespace DA3.Service.Implement
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex.Message);
                 return false;
             }
         }
@@ -71,6 +76,7 @@ namespace DA3.Service.Implement
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex.Message);
                 return false;
             }
         }

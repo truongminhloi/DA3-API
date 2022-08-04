@@ -9,11 +9,16 @@ namespace DA3.Infrastructure.Mappings
     {
         public MappingProfile()
         {
-            this.CreateMap<Product, Product>();
+            ProductMapping();
+        }
 
-            this.CreateMap<CreateProductRequest, Product>();
-            this.CreateMap<Product, ProductDto>();
-            this.CreateMap<UpdateProductRequest, Product>();
+        private void ProductMapping()
+        {
+            CreateMap<Product, Product>();
+
+            CreateMap<CreateProductRequest, Product>();
+            CreateMap<Product, ProductDto>();
+            CreateMap<UpdateProductRequest, Product>();
         }
     }
 }
