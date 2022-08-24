@@ -2,10 +2,8 @@
 
 namespace DA3.DAL.Domain
 {
-    public class Cart
+    public class Cart : BaseDomain
     {
-        public int Id { get; set; }
-
         public int UserId { get; set; }
 
         public int ProductId { get; set; }

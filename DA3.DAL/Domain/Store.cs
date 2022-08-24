@@ -1,9 +1,7 @@
 ﻿namespace DA3.DAL.Domain
 {
-    public class Store
+    public class Store : BaseDomain
     {
-        public int Id { get; set; }
-
         public string StoreName { get; set; }
 
         public string PhoneNumber { get; set; }

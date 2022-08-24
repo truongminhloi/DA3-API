@@ -38,14 +38,14 @@ namespace DA3.Controler
 
         [HttpDelete]
         [Route("delete")]
-        public async Task<bool> Delete([FromQuery] int productId)
+        public async Task<bool> Delete([FromQuery] string productId)
         {
             return await _productService.Delete(productId);
         }
 
         [HttpGet]
         [Route("details")]
-        public async Task<ProductDto> FindById([FromQuery] int productId)
+        public async Task<ProductDto> FindById([FromQuery] string productId)
         {
             return await _productService.FindById(productId);
         }

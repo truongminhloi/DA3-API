@@ -13,7 +13,7 @@ namespace DA3.Service.Implement
     {
         private readonly IMapper _mapper;
         private readonly IApplicationDbContext _dbContext;
-        private readonly ILogger _logger; 
+        private readonly ILogger _logger;
 
         public ProductService(IMapper mapper, IApplicationDbContext dbContext, ILogger<ProductDto> logger)
         {
@@ -63,11 +63,11 @@ namespace DA3.Service.Implement
             }
         }
 
-        public async Task<bool> Delete(int productId, CancellationToken cancellationToken = default)
+        public async Task<bool> Delete(string productId, CancellationToken cancellationToken = default)
         {
             try
             {
-                var productEntity = _dbContext.Products.ProjectTo<Product>(_mapper.ConfigurationProvider).FirstOrDefault(x=>x.Id == productId);
+                var productEntity = _dbContext.Products.ProjectTo<Product>(_mapper.ConfigurationProvider).FirstOrDefault(x => x.Id == new Guid(productId));
                 productEntity.Status = Common.Status.DELETE;
 
                 _dbContext.Products.Update(productEntity);
@@ -81,9 +81,9 @@ namespace DA3.Service.Implement
             }
         }
 
-        public async Task<ProductDto> FindById(int productId)
+        public async Task<ProductDto> FindById(string productId)
         {
-            var productEntity = _dbContext.Products.ProjectTo<Product>(_mapper.ConfigurationProvider).FirstOrDefault(x => x.Id == productId);
+            var productEntity = _dbContext.Products.ProjectTo<Product>(_mapper.ConfigurationProvider).FirstOrDefault(x => x.Id == new Guid(productId));
             return _mapper.Map<Product, ProductDto>(productEntity);
         }
     }

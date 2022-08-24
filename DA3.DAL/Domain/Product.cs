@@ -2,13 +2,13 @@
 
 namespace DA3.DAL.Domain
 {
-    public class Product
+    public class Product : BaseDomain
     {
-        public int Id { get; set; }
-        
         public string ProductName { get; set; }
 
-        public int CategoryId { get; set; }
+        public string CategoryId { get; set; }
+
+        public Category Category { get; set; }
 
         public string Url { get; set; }
 
@@ -19,5 +19,7 @@ namespace DA3.DAL.Domain
         public string Color { get; set; }
 
         public Status Status { get; set; }
+
+        public ProductDetail ProductDetail { get; set; }
     }
 }
